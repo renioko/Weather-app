@@ -1,3 +1,11 @@
+# my files:
+tajne_notatki.txt
+zad.dom.py
+.gitignore
+.env
+.csv
+.db
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

@@ -12,12 +12,13 @@ from requests import HTTPError
 
 
 
-def get_request() -> json:
+def get_request(location) -> json:
     api_key = load_weather_api_key()
     data = weather_api_params()
 
-# zastepuje klucz z toml kluczem api_key
+# zastepuje klucz z toml kluczem api_key oraz lokalizacja
     data['api_params']['params']['key'] = api_key
+    data['api_params']['params']['q'] = location
 
     try:
         r = requests.get(data['api_params']['url'], headers=data['api_params']['headers'], params=data['api_params']['params'])
@@ -48,8 +49,10 @@ def print_raport(weather_json):
     print(f'humidity: {weather['humidity']}')
 
 def main():
-    weather_json = get_request()
+    location = input('enter location: ')
+    weather_json = get_request(location)
     print_raport(weather_json)
+
 
 if __name__ == '__main__':
     main()
